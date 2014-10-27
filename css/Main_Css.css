@@ -1,0 +1,149 @@
+
+html,head,body,section,header,footer,div,ul,li{
+    size: 100%;
+    margin: 0;
+    padding: 0;
+    
+    color: black;
+    background-color: #191919;
+}
+
+.cotianer{
+    width: 80%;
+    margin: auto;
+    padding: 0.75em 0.5em;
+    
+    
+    //border: solid 0.2em #555555;
+    
+    border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    
+    
+    //gradiant
+    background: #45484d; // Old browsers
+    background: -moz-linear-gradient(45deg,  #45484d 0%, #000000 100%); // FF3.6+ 
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#45484d), color-stop(100%,#000000)); // Chrome,Safari4+ 
+    background: -webkit-linear-gradient(45deg,  #45484d 0%,#000000 100%); // Chrome10+,Safari5.1+ 
+    background: -o-linear-gradient(45deg,  #45484d 0%,#000000 100%); // Opera 11.10+ 
+    background: -ms-linear-gradient(45deg,  #45484d 0%,#000000 100%); // IE10+ 
+    background: linear-gradient(45deg,  #45484d 0%,#000000 100%); // W3C 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); // IE6-9 fallback on horizontal gradient 
+    //end gradiant
+    
+    
+}
+
+.header{
+    background-color: #c2100c;
+    margin: auto;
+    overflow: hidden;
+    
+    height: 7.5em;
+    
+    box-shadow: 5px 2px 30px #ff5e2e;
+    
+    border: solid 0.15em #ffe487;
+    border-bottom: 0em;
+    
+    border-top-left-radius: 0.8em;
+    border-top-right-radius: 0.8em;
+    
+    -webkit-border-top-left-radius: 0.8em;
+    -webkit-border-top-right-radius: 0.8em;
+    -moz-border-top-left-radius: 0.8em;
+    -moz-border-top-right-radius: 0.8em;
+}
+
+.container_nav_title{
+    background-color: inherit;
+    float: left;
+    height: inherit;
+    width: 45.4em;
+}
+
+.title{ 
+    height: 4.5em;
+    background-color: inherit;
+}
+
+.headmenu{
+    padding: 0.7em 0.7em;
+}
+
+.menu{
+    background-color: #c2100c;
+    list-style: none;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.menu li{
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    margin: 0em 0.3em 0em 0.3em;
+    
+    border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    
+    
+    color: white;
+    
+    background: #f2aca2; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f2aca2 0%, #c1403e 50%, #c1211f 51%, #ff6600 75%, #c2100c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2aca2), color-stop(50%,#c1403e), color-stop(51%,#c1211f), color-stop(75%,#ff6600), color-stop(100%,#c2100c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f2aca2 0%,#c1403e 50%,#c1211f 51%,#ff6600 75%,#c2100c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f2aca2 0%,#c1403e 50%,#c1211f 51%,#ff6600 75%,#c2100c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f2aca2 0%,#c1403e 50%,#c1211f 51%,#ff6600 75%,#c2100c 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f2aca2 0%,#c1403e 50%,#c1211f 51%,#ff6600 75%,#c2100c 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2aca2', endColorstr='#c2100c',GradientType=0 ); /* IE6-9 */
+
+    
+}
+
+.menu li:hover{
+    color: #fff5b3;
+}
+
+.login{
+    background-color: inherit; 
+    float: right;
+    padding: 1.5em 1em 1em 1em;
+    height: inherit;
+}
+
+.body{
+    background-color: #fff5b3;
+    margin: auto;
+    height: 600px;
+    
+    padding: 0.7 1em;
+    
+    border: solid 0.15em #ffe487;
+    border-top: 0em;
+    border-bottom: 0em;
+    
+    box-shadow: 5px 2px 30px #ff5e2e;
+}
+
+.footer{
+    background-color: #c2100c;
+    margin: auto;
+    
+    height: 7.5em;
+    
+    box-shadow: 5px 2px 30px #ff5e2e;
+    
+    border: solid 0.15em #ffe487;
+    border-top: 0em;
+    
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+    
+    -webkit-border-bottom-left-radius: 0.8em;
+    -webkit-border-bottom-right-radius: 0.8em;
+    -moz-border-bottom-left-radius: 0.8em;
+    -moz-border-bottom-right-radius: 0.8em;
+}
