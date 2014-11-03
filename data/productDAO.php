@@ -45,4 +45,15 @@ class productDAO{
         }
         return $LijstProductgroep_id;
     }
+    public function getProducten(){
+        $LijstProducten= array();
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product order by productgroep_id";
+        $resultset= $dbh->query($sql);
+        foreach ($reultset as $rij){
+            $product= product::create($rij["product_id"],$rij["productgroep_id"],$rij["product"],$rij["kostprijs_stuk"]);
+            array_push($LijstProductgroep_id,$product);
+        }
+        return $LijstProducten;
+    }
 }
