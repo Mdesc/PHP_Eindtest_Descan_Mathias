@@ -11,5 +11,9 @@ class bestelling_service{
         $bestellingDAO= new bestellingDAO();
         $bestellingDAO->deleteBestelling($bestelling_id);
     }
+    public function updateBestelling($bestelling_id,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen){
+        $bestellingDAO= new bestellingDAO();
+        $bestellingDAO->updateBestelling($bestelling_id,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen);
+    }
 }
 

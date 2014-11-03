@@ -9,13 +9,16 @@ $bestaandGebruiker= null;
 class gebruikerDAO{
     //functions
     public function addGebruiker($naam,$voornaam,$straat,$huisnr,$bus,$postcode_id,$email,$wachtwoord,$block){
-        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
-        print_r($dbh);
-        $sql="insert into gebruiker (naam,voornaam,straat,huisnr,bus,postcode_id,email,wachtwoord,block)
-              values ('".$naam."','".$voornaam."','".$straat."','".$huisnr."','".$bus."'
-              ,'".$postcode_id."','".$email."','".$wachtwoord."','".$block."') ";
-        $dbh->exec($sql);
-        $dbh= null;
+       $bestaand= $this->getByEmail($email);
+       if($bestaand->GetKlant_id()!=0){
+           throw new emailInUseException();
+       }
+       $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+       $sql="insert into gebruiker (naam,voornaam,straat,huisnr,bus,postcode_id,email,wachtwoord,block)
+             values ('".$naam."','".$voornaam."','".$straat."','".$huisnr."','".$bus."'
+             ,'".$postcode_id."','".$email."','".$wachtwoord."','".$block."') ";
+       $dbh->exec($sql);
+       $dbh= null;
     }
     public function deleteGebruiker($klant_id){
        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
@@ -30,6 +33,21 @@ class gebruikerDAO{
        $dbh->exec($sql);
        $dbh= null;
     }
-    
+    public function getByEmail($email){
+       $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+       $sql ="select klant_id,naam,voornaam,straat,huisnr,bus,postcode_id,email,wachtwoord,block from gebruiker where email='".$email."' ";
+       $resultset= $dbh->query($sql);
+       $rij=$resultset->fetch();
+       $gebruiker= gebruiker::create($rij["klant_id"],$rij["naam"],$rij["voornaam"],$rij["straat"],$rij["huisnr"],$rij["bus"],$rij["postcode_id"],$rij["email"],$rij["wachtwoord"],$rij["block"]);
+       return $gebruiker;
+    }
+    public function getByklant_id($klant_id){
+       $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+       $sql ="select klant_id,naam,voornaam,straat,huisnr,bus,postcode_id,email,wachtwoord,block from gebruiker where klant_id=".$klant_id;
+       $resultset= $dbh->query($sql);
+       $rij=$resultset->fetch();
+       $gebruiker= gebruiker::create($rij["klant_id"],$rij["naam"],$rij["voornaam"],$rij["straat"],$rij["huisnr"],$rij["bus"],$rij["postcode_id"],$rij["email"],$rij["wachtwoord"],$rij["block"]);
+       return $gebruiker;
+    }
 }
 

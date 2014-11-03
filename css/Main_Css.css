@@ -5,7 +5,8 @@ html,head,body,section,header,footer,div,ul,li{
     padding: 0;
     
     color: black;
-    background-color: #191919;
+    //background-color: #191919;
+    background-color:white;
 }
 
 .cotianer{

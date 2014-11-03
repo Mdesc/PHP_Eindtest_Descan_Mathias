@@ -15,4 +15,14 @@ class productgroep_service{
         $productgroepDAO= new productgroepDAO();
         $productgroepDAO->updateProductgroep($productgroep_id,$productgroep_naam);
     }
+    public function getByProductgroep_id($productgroep_id){
+        $productgroepDAO= new productgroepDAO();
+        $productgroep= $productgroepDAO->getByProductgroep_id($productgroep_id);
+        return $productgroep;
+    }
+    public function getByProductgroep_naam($productgroep_naam){
+        $productgroepDAO= new productgroepDAO();
+        $productgroep= $productgroepDAO->getByProductgroep_naam($productgroep_naam);
+        return $productgroep;
+    }
 }

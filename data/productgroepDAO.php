@@ -26,4 +26,20 @@ class productgroepDAO{
         $dbh->exec($sql);
         $dbh= null;
     }
+    public function getByProductgroep_id($productgroep_id){
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql="select productgroep_id,productgroep_naam from productgroep where productgroep_id=".$productgroep_id;
+        $resultset= $dbh->query($sql);
+        $rij=$resultset->fetch();
+        $productgroep= productgroep::create($rij["productgroep_id"],$rij["productgroep_naam"]);
+        return $productgroep;
+    }
+    public function getByProductgroep_naam($productgroep_naam){
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql="select productgroep_id,productgroep_naam from productgroep where productgroep_naam='".$productgroep_naam."' ";
+        $resultset= $dbh->query($sql);
+        $rij= $resultset->fetch();
+        $productgroep= productgroep::create($rij["productgroep_id"],$rij["productgroep_naam"]);
+        return $productgroep;
+    }
 }
