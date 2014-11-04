@@ -79,6 +79,7 @@ if(isset($_GET["logout"])){
 if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $klant_id= $_SESSION["klant_id"];
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
+    $block= $gebruiker->GetBlock();
 }
 
 include ("/presentation/Home_presentation.php");

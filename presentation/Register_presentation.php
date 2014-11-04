@@ -57,9 +57,25 @@
                 </section>
             </header>
             <section class="body">
-                <?php
-                                    echo 'body';
-                ?>
+                <form method="post" action="Register.php?registreer=reg">
+                    <label for="naam">naam:</label>
+                    <input type="text" name="naam" value="" placeholder="naam"><br/>
+                    <label for="voornaam">voornaam:</label>
+                    <input type="text" name="voornaam" value="" placeholder="voornaam"><br/>
+                    <label for="straat">straat:</label>
+                    <input type="text" name="straat" value="" placeholder="straat"><br/>
+                    <label for="huisnummer">huisnummer:</label>
+                    <input type="text" name="huisnummer" value="" placeholder="huisnummer"><br/>
+                    <label for="bus">bus:</label>
+                    <input type="text" name="bus" value="" placeholder="bus"><br/>
+                    <label for="postcode">postcode:</label>
+                    <input type="text" name="postcode" value="" placeholder="postcode"><br/>
+                    <label for="gemeente">gemeente:</label>
+                    <input type="text" name="gemeente" value="" placeholder="gemeente"><br/>
+                    <label for="email">email:</label>
+                    <input type="text" name="email" value="" placeholder="email"><br/>
+                    <input type="submit" id="registreerbutton" value="registreer" name="registreer">
+                </form>
             </section>
             <footer class="footer">
                 test

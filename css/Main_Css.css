@@ -10,7 +10,8 @@ html,head,body,section,header,footer,div,ul,li{
 }
 
 .cotianer{
-    width: 80%;
+    width: 63.2em;
+    overflow: hidden;
     margin: auto;
     padding: 0.75em 0.5em;
     
@@ -110,14 +111,25 @@ html,head,body,section,header,footer,div,ul,li{
 
 .login{
     background-color: inherit; 
-    float: right;
-    padding: 1.5em 1em 1em 1em;
+    float: left;
+    padding: 1.3em 1em 1em 1em;
     height: inherit;
 }
+
+input{
+    margin-bottom: 0.4em;
+}
+
+#loginbutton{
+    margin-left: 12.96em;
+    padding: 0.1em 1.4em 0.1em 1.4em;
+}
+
 
 .body{
     background-color: #fff5b3;
     margin: auto;
+    padding: 1.5em 4.5em;    
     height: 600px;
     
     padding: 0.7 1em;
