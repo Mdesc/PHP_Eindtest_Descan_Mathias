@@ -35,25 +35,25 @@ class productDAO{
         return $product;
     }
     public function getByProductgroep_id($productgroep_id){
-        $LijstProductgroep_id= array();
+        $lijstproductgroep_id= array();
         $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
-        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product where".$productgroep_id;
+        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product where productgroep_id=".$productgroep_id;
         $resultset= $dbh->query($sql);
-        foreach ($reultset as $rij){
+        foreach ($resultset as $rij){
             $product= product::create($rij["product_id"],$rij["productgroep_id"],$rij["product"],$rij["kostprijs_stuk"]);
-            array_push($LijstProductgroep_id,$product);
+            array_push($lijstproductgroep_id,$product);
         }
-        return $LijstProductgroep_id;
+        return $lijstproductgroep_id;
     }
     public function getProducten(){
-        $LijstProducten= array();
+        $lijstproducten= array();
         $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
         $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product order by productgroep_id";
         $resultset= $dbh->query($sql);
-        foreach ($reultset as $rij){
+        foreach ($resultset as $rij){
             $product= product::create($rij["product_id"],$rij["productgroep_id"],$rij["product"],$rij["kostprijs_stuk"]);
-            array_push($LijstProductgroep_id,$product);
+            array_push($lijstproducten,$product);
         }
-        return $LijstProducten;
+        return $lijstproducten;
     }
 }

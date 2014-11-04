@@ -22,13 +22,27 @@
                     </nav>
                 </section>
                 <section class="login">
-                    <form method="post" action="login.php">
+                    <?php
+                    if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
+                    ?>
+                    welcome : 
+                    <?php
+                    echo $gebruiker->GetVoornaam();
+                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                    
+                    }else{
+                    ?>
+                        <form method="post" action="Home.php?login=start">
                             <label for="username">username:</label>
-                            <input type="text" name="username" value="" placeholder="username"><br/>
+                            <input type="text" name="email" value="" placeholder="email"><br/>
                             <label for="password">password:</label>
-                            <input type="password" name="password" value=""><br/>
+                            <input type="password" name="wachtwoord" value=""><br/>
                             <input type="submit" value="login" name="submit">
                         </form> 
+                    <?php
+                    }
+                    ?>
+                    
                 </section>
             </header>
             <section class="body">

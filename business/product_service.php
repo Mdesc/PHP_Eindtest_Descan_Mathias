@@ -15,5 +15,15 @@ class product_service{
         $productDAO= new productDAO();
         $productDAO->updateProduct($product_id,$productgroep_id,$product,$kostprijs_stuk);
     }
+    public function getByproductgroep_id($productgroep_id){
+        $productDAO= new productDAO();
+        $lijstproductgroep_id= $productDAO->getByProductgroep_id($productgroep_id);
+        return $lijstproductgroep_id;
+    }
+    public function getProducten(){
+        $productDAO= new productDAO();
+        $lijstproducten= $productDAO->getProducten();
+        return $lijstproducten;
+    }
 }
 

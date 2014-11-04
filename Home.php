@@ -9,9 +9,6 @@ require_once ("business/productgroep_service.php");
 
 require_once ("exceptions/emailInUseException.php");
 
-include ("/presentation/Home_presentation.php");
-
- 
 $gebruikersvc= new gebruiker_service();
 //$gebruikersvc->addGebruiker("descan","mathias","hogestraat",34,0,2,"mathias.descan@yahoo.com","morang",0);     //add
 //$gebruikersvc->deleteGebruiker(8);                                                        //delete
@@ -25,6 +22,9 @@ $gebruikersvc= new gebruiker_service();
     echo 'failed to add';
 }*/
                                                                                             //exception test
+//$gebruiker= $gebruikersvc->logincheck("mathias.descan@yahoo.com", "morang");
+//echo 'hier is het resultaat van de login try:',$gebruiker;                                //test logincheck
+//$gebruikersvc->userInputCheck("des  can", "http://www.google.be", "hoges\traat", 34, 0, "<p>8610</p>", "wer//\\<br/>ken", "mathias.descan@yahoo.com");
 
 //$datetime = new DateTime();
 //$datum = $datetime->format('Y-m-d H');
@@ -49,7 +49,11 @@ $productsvc= new product_service();
 //$productsvc->addProduct(1,"product",11,25);                                               //add
 //$productsvc->deleteProduct(8);                                                            //delete
 //$productsvc->updateProduct(2,1,'volkoren brood',25.25);                                   //update                                                  //delete
-  
+//$lijst= $productsvc->getProducten();
+//print_r($lijst);                                                                          //test lijst
+//$lijstid= $productsvc->getByproductgroep_id(2);
+//print_r($lijstid);                                                                        //lijst per id 
+
 $productgroepsvc= new productgroep_service();
 //$productgroepsvc->addProductgroep("productgroep_naam");                                   //add
 //$productgroepsvc->deleteProductgroep(8);                                                  //delete
@@ -59,3 +63,22 @@ $productgroepsvc= new productgroep_service();
 //print_r($productgroep);
 //$productgroep= $productgroepsvc->getByProductgroep_naam("raverne");
 //print_r($productgroep);
+if(isset($_GET["login"]) && $_GET["login"]=="start"){
+    $email=$_POST["email"];
+    $wachtwoord=$_POST["wachtwoord"];
+    $gebruikersvc->userInputCheck(0,0,0,0,0,0,0,$email);
+    
+    $gebruikersvc->login($email, $wachtwoord);
+}
+if(isset($_GET["logout"])){
+    $key_out=$_GET["logout"];
+    $gebruikersvc->logout($key_out);
+    header("location: Home.php");
+}
+
+if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
+    $klant_id= $_SESSION["klant_id"];
+    $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
+}
+
+include ("/presentation/Home_presentation.php");
