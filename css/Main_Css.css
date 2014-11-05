@@ -62,7 +62,8 @@ html,head,body,section,header,footer,div,ul,li{
     background-color: inherit;
     float: left;
     height: inherit;
-    width: 45.4em;
+    width: 44.6em;
+    margin: 0.5em 0.5em 1.6em 0.5em
 }
 
 .title{ 
@@ -84,7 +85,7 @@ html,head,body,section,header,footer,div,ul,li{
 .menu li{
     display: inline-block;
     padding: 0.3em 0.7em;
-    margin: 0em 0.3em 0em 0.3em;
+    margin: 0em 0.4em 0em 0.4em;
     
     border-radius: 0.3em;
     -webkit-border-radius: 0.3em;
@@ -112,6 +113,7 @@ html,head,body,section,header,footer,div,ul,li{
 .login{
     background-color: inherit; 
     float: left;
+    color: white;
     padding: 1.3em 1em 1em 1em;
     height: inherit;
 }
@@ -129,7 +131,7 @@ input{
 .body{
     background-color: #fff5b3;
     margin: auto;
-    padding: 1.5em 4.5em;    
+    padding: 2.3em 3.5em;    
     height: 600px;
     
     padding: 0.7 1em;
@@ -144,8 +146,9 @@ input{
 .footer{
     background-color: #c2100c;
     margin: auto;
+    color: white;
     
-    height: 7.5em;
+    height: 4.5em;
     
     box-shadow: 5px 2px 30px #ff5e2e;
     
@@ -159,4 +162,8 @@ input{
     -webkit-border-bottom-right-radius: 0.8em;
     -moz-border-bottom-left-radius: 0.8em;
     -moz-border-bottom-right-radius: 0.8em;
+}
+.footerinfo{
+    margin: 0em 0em 0em 0em; 
+    padding: 1.5em 0em 1em 13em;
 }

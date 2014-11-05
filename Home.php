@@ -24,7 +24,7 @@ $gebruikersvc= new gebruiker_service();
                                                                                             //exception test
 //$gebruiker= $gebruikersvc->logincheck("mathias.descan@yahoo.com", "morang");
 //echo 'hier is het resultaat van de login try:',$gebruiker;                                //test logincheck
-//$gebruikersvc->userInputCheck("des  can", "http://www.google.be", "hoges\traat", 34, 0, "<p>8610</p>", "wer//\\<br/>ken", "mathias.descan@yahoo.com");
+//$gebruikersvc->userInputCheck("de zuure", "geert", "handzamestraat",5,0,8610,"handzame","geert_de_zuure@yahoo.com");
 
 //$datetime = new DateTime();
 //$datum = $datetime->format('Y-m-d H');
@@ -44,6 +44,14 @@ $gemeentesvc= new gemeente_service();
 //$gemeentesvc->addGemeente(8610,"gemeente");                                               //add
 //$gemeentesvc->deleteGemeente(8);                                                          //delete
 //$gemeentesvc->updateGemeente(2, 8610, "kortemark");                                       //update
+/*$bool= $gemeentesvc->bestaandControle(8610, "hanzame");
+if($bool == true){
+    echo 'de bool heeft de waard true';
+}else{
+    echo 'de bool heeft de waarde false';                                                   //test van gemeente bestaat
+}*/
+/*$id= $gemeentesvc->getPostcode_idByGemeentePostcode(8610,"werken");
+echo $id,"dit het id voor 8610 werken";*/                                                     //test voor functie get postcode_id
   
 $productsvc= new product_service();
 //$productsvc->addProduct(1,"product",11,25);                                               //add

@@ -45,9 +45,9 @@
                     ?>
                         <form method="post" action="Home.php?login=start">
                             <label for="username">username:</label>
-                            <input type="text" name="email" value="" placeholder="email"><br/>
+                            <input type="text" name="email" value="<?php if(isset($_COOKIE["username"])){ echo $_COOKIE["username"]; }?>" placeholder="email"><br/>
                             <label for="password">password:</label>
-                            <input type="password" name="wachtwoord" value=""><br/>
+                            <input type="password" name="wachtwoord" value="<?php if(isset($_COOKIE["wachtwoord"])){ echo $_COOKIE["wachtwoord"]; }?>"><br/>
                             <input type="submit" id="loginbutton" value="login" name="submit">
                         </form> 
                     <?php
@@ -62,7 +62,7 @@
                 ?>
             </section>
             <footer class="footer">
-                test
+                <p class="footerinfo">Site gemaakt door Mathias Descan &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; PHP eindtest &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; fictieve bakker shop</p>
             </footer>
         </div>
     </body>

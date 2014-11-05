@@ -19,14 +19,23 @@ class gebruiker_service{
         $gemeente= str_replace("/", "<p/>", $gemeente);
         $email= str_replace("/", "<p/>", $email);
         
-        $naam= strip_tags($naam);
-        $voornaam=  strip_tags($voornaam); 
-        $straat=  strip_tags($straat);
-        $huisnr=  strip_tags($huisnr);
-        $bus=  strip_tags($bus);
-        $postcode=  strip_tags($postcode);
-        $gemeente=  strip_tags($gemeente);
-        $email=  strip_tags($email);
+        $naam= strip_tags(trim($naam));
+        $voornaam= strip_tags(trim($voornaam)); 
+        $straat= strip_tags(trim($straat));
+        $huisnr= strip_tags(trim($huisnr));
+        $bus= strip_tags(trim($bus));
+        $postcode= strip_tags(trim($postcode));
+        $gemeente= strip_tags(trim($gemeente));
+        $email= strip_tags(trim($email));
+        
+        $naam= htmlspecialchars($naam);
+        $voornaam=  htmlspecialchars($voornaam); 
+        $straat=  htmlspecialchars($straat);
+        $huisnr=  htmlspecialchars($huisnr);
+        $bus=  htmlspecialchars($bus);
+        $postcode=  htmlspecialchars($postcode);
+        $gemeente=  htmlspecialchars($gemeente);
+        $email=  htmlspecialchars($email);
         
         $naam= stripslashes($naam);
         $voornaam= stripslashes($voornaam); 
@@ -37,15 +46,6 @@ class gebruiker_service{
         $gemeente= stripslashes($gemeente);
         $email= stripslashes($email);
         
-        $naam= htmlspecialchars(trim($naam));
-        $voornaam= htmlspecialchars(trim($voornaam)); 
-        $straat= htmlspecialchars(trim($straat));
-        $huisnr= htmlspecialchars(trim($huisnr));
-        $bus= htmlspecialchars(trim($bus));
-        $postcode= htmlspecialchars(trim($postcode));
-        $gemeente= htmlspecialchars(trim($gemeente));
-        $email= htmlspecialchars(trim($email));
-        
         $naam= mysql_real_escape_string($naam);
         $voornaam= mysql_real_escape_string($voornaam); 
         $straat= mysql_real_escape_string($straat);
@@ -53,7 +53,9 @@ class gebruiker_service{
         $bus= mysql_real_escape_string($bus);
         $postcode= mysql_real_escape_string($postcode);
         $gemeente= mysql_real_escape_string($gemeente);
-        $email= mysql_real_escape_string($email);    
+        $email= mysql_real_escape_string($email);
+        
+        //echo $naam,' ',$voornaam,' ',$straat,' ',$huisnr,' ',$bus,' ',$postcode,' ',$gemeente,' ',$email;
     }
     public function deleteGebruiker($klant_id){
         $gebruikerDAO = new gebruikerDAO();
@@ -107,6 +109,8 @@ class gebruiker_service{
             //create sessie gegevens
             $klant_id= $this->getKlant_idByEmail($email);
             $this->createSessieInfo($status,$user_level,$klant_id);
+            setcookie("username",$email);
+            setcookie("wachtwoord",$wachtwoord);
         }
     }
     public function createSessieInfo($status,$user_level,$klant_id){
@@ -118,5 +122,10 @@ class gebruiker_service{
         if($key_out=="exit"){
             session_destroy(); 
         }
+    }
+    public function generateWachtwoord(){
+        $gebruikerDAO= new gebruikerDAO();
+        $wachtwoord= $gebruikerDAO->generateWachtwoord();
+        return $wachtwoord;
     }
 }

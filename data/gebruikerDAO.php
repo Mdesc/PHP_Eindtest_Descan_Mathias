@@ -49,5 +49,16 @@ class gebruikerDAO{
        $gebruiker= gebruiker::create($rij["klant_id"],$rij["naam"],$rij["voornaam"],$rij["straat"],$rij["huisnr"],$rij["bus"],$rij["postcode_id"],$rij["email"],$rij["wachtwoord"],$rij["block"]);
        return $gebruiker;
     }
+    public function generateWachtwoord() {
+        $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+        $wachtwoordArr = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $char = rand(0, $alphaLength);
+            $wachtwoordArr[] = $alphabet[$char];
+        }
+        $wachtwoord = implode($wachtwoordArr);
+        return $wachtwoord;
+    }
 }
 
