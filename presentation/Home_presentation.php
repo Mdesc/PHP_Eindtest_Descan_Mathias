@@ -20,15 +20,14 @@
                             <?php   if(!isset($_SESSION["status"])){?>
                             <a href="Register.php"/><li>Register</li></a>
                             <?php   }?>
-                            <a href="home.php"/><li>Producten</li></a>
+                            <a href="Producten.php"/><li>Producten</li></a>
                             <?php   if(isset($_SESSION["status"]) && $_SESSION["status"] == true && isset($block) && $block == false && isset($_SESSION["user_level"]) && $_SESSION["user_level"] == "klant"){?>
-                            <a href="home.php"/><li>Bestelling</li></a>
+                            <a href="Bestelling.php"/><li>Bestelling</li></a>
                             <?php   }?>
                             <?php   if(isset($_SESSION["status"]) && $_SESSION["status"] == true && isset($_SESSION["user_level"]) && $_SESSION["user_level"] == "admin"){?>
-                            <a href="home.php" /><li>Beheren</li></a>
+                            <a href="Beheren.php" /><li>Beheren</li></a>
                             <?php   }?>
-                            <a href="home.php"/><li>Over ons</li></a>
-                            
+                            <a href="OverOns.php"/><li>Over ons</li></a>
                         </ul>
                     </nav>
                 </section>
@@ -58,7 +57,7 @@
             </header>
             <section class="body">
                 <?php
-                                    echo 'body';
+                                    echo 'Home';
                 ?>
             </section>
             <footer class="footer">
@@ -67,12 +66,3 @@
         </div>
     </body>
 </html>
-
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

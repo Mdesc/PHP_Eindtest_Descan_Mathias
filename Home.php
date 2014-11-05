@@ -63,9 +63,9 @@ $productsvc= new product_service();
 //print_r($lijstid);                                                                        //lijst per id 
 
 $productgroepsvc= new productgroep_service();
-//$productgroepsvc->addProductgroep("productgroep_naam");                                   //add
-//$productgroepsvc->deleteProductgroep(8);                                                  //delete
-//$productgroepsvc->updateProductgroep(6,"raverne");                                        //update
+//$productgroepsvc->addProductgroep("productgroep_naam","link.jpg");                                   //add
+//$productgroepsvc->deleteProductgroep(11);                                                  //delete
+//$productgroepsvc->updateProductgroep(12,"raverne","later");                                        //update
 
 //$productgroep= $productgroepsvc->getByProductgroep_id(5);                                 //test getby
 //print_r($productgroep);
