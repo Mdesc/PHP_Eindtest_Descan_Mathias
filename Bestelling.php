@@ -33,5 +33,8 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
     $block= $gebruiker->GetBlock();
 }
-
-include ("/presentation/Bestelling_presentation.php");
+if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["user_level"]) && $_SESSION["user_level"]=="klant"){
+    include ("/presentation/Bestelling_presentation.php");
+}else{
+    header("location: home.php");
+}
