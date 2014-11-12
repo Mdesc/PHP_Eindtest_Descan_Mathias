@@ -60,5 +60,16 @@ class gebruikerDAO{
         $wachtwoord = implode($wachtwoordArr);
         return $wachtwoord;
     }
+    public function getGebruikers(){
+        $lijstgebruikers=array();
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql ="select klant_id,naam,voornaam,straat,huisnr,bus,postcode_id,email,wachtwoord,block from gebruiker order by naam";
+        $resultset= $dbh->query($sql);
+        foreach ($resultset as $rij){
+            $gebruiker= gebruiker::create($rij["klant_id"],$rij["naam"],$rij["voornaam"],$rij["straat"],$rij["huisnr"],$rij["bus"],$rij["postcode_id"],$rij["email"],$rij["wachtwoord"],$rij["block"]);
+            array_push($lijstgebruikers,$gebruiker);
+        }
+        return $lijstgebruikers;
+    }
 }
 

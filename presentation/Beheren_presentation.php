@@ -148,7 +148,34 @@
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="klanten"){?>
                     <!--Begin klanten pagina-->
-                        
+                    <u>geblokkeerde gebruikers</u><br/><br/>
+                    <ul class="block">
+                    <?php
+                    foreach ($gebruikerlijst as $gebr){
+                        if(isset($gebr) && $gebr->GetBlock()==true){
+                            ?>
+                            <li class="gebrblock"><?php echo $gebr->GetNaam(),'&nbsp&nbsp',$gebr->GetVoornaam(),'&nbsp&nbsp',$gebr->GetEmail(),'&nbsp&nbsp';?>
+                            <a href="">unblock</a>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+                    </ul>
+                    <u>vrije gebruikers</u><br/><br/>
+                    <ul class="free">
+                    <?php
+                    foreach ($gebruikerlijst as $gebr){
+                        if(isset($gebr) && $gebr->GetBlock()==false){
+                            ?>
+                            <li class="gebrfree"><?php echo $gebr->GetNaam(),'&nbsp&nbsp',$gebr->GetVoornaam(),'&nbsp&nbsp',$gebr->GetEmail(),'&nbsp&nbsp';?>
+                            <a href="">block</a>
+                            </li>
+                            <?php
+                        }
+                    }
+                    ?>
+                    </ul>
                     <!--Einde klanten pagina-->
                     <?php }
                     if(!isset($_GET["inhoud"])){?>

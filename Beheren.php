@@ -127,6 +127,11 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
         $productsvc->deleteProduct($product_id);
     }
     //einde product beheer
+    //begin klanten beheer
+    if(isset($_GET["inhoud"]) && $_GET["inhoud"]=="klanten"){
+        $gebruikerlijst=$gebruikersvc->getgebruikers();
+    }
+    //einde klanten beheer
     //pagina view
     include ("/presentation/Beheren_presentation.php"); 
    

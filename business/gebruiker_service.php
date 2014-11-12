@@ -133,4 +133,9 @@ class gebruiker_service{
         $wachtwoord= $gebruikerDAO->generateWachtwoord();
         return $wachtwoord;
     }
+    public function getgebruikers(){
+        $gebruikerDAO= new gebruikerDAO();
+        $gebruikerlijst=$gebruikerDAO->getGebruikers();
+        return $gebruikerlijst;
+    }
 }
