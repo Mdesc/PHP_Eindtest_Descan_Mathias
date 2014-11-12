@@ -41,4 +41,15 @@ class productgroepDAO{
         $productgroep= productgroep::create($rij["productgroep_id"],$rij["productgroep_naam"],$rij["productgroep_image"]);
         return $productgroep;
     }
+    public function getProductgroepen(){
+        $lijstproductgroepen= array();
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql= "select productgroep_id,productgroep_naam,productgroep_image from productgroep order by productgroep_id";
+        $resultset= $dbh->query($sql);
+        foreach ($resultset as $rij){
+            $productgroep= productgroep::create($rij["productgroep_id"],$rij["productgroep_naam"],$rij["productgroep_image"]);
+            array_push($lijstproductgroepen,$productgroep);
+        }
+        return $lijstproductgroepen;
+    }
 }

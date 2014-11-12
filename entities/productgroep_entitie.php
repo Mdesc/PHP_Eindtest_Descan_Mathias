@@ -8,7 +8,7 @@ class productgroep{
     private $productgroep_image;
     
     //constructor
-    private function __construct($productgroep_id,$productgroep_naam){
+    private function __construct($productgroep_id,$productgroep_naam,$productgroep_image){
         $this->productgroep_id=$productgroep_id;
         $this->productgroep_naam=$productgroep_naam;
         $this->productgroep_image=$productgroep_image;

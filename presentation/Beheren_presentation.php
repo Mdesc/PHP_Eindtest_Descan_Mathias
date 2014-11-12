@@ -69,23 +69,37 @@
                 </div>
                 <div class="inhoud">
                     <?php
+                    if(isset($_GET["message"])){
+                        if($_GET["message"]=="addproductgroep"){
+                            echo "<p class='message'>toevoegen geslaagd</p>";                            
+                        }elseif($_GET["message"]=="bestaat"){
+                            echo "<p class='message'>productgroep bestaat</p>";
+                        }elseif($_GET["message"]=="size"){
+                            echo "<p class='message'>afbeelding te groot</p>";
+                        }elseif($_GET["message"]=="extentie"){
+                            echo "<p class='message'>afbeelding heeft foute extentie</p>";
+                        }elseif($_GET["message"]=="sizephp"){
+                            echo "<p class='message'>afbeelding overschreed php 8mb limiet</p>";
+                        }
+                        
+                    }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="nieuwproduct"){?>
                     <!--Begin nieuwe product pagina-->
-                        <form method="post" action="Register.php?registreer=reg">
+                        <form method="post" action="Beheren.php?addproduct=add">
                             <label for="productnaam">product*:</label>
                             <input type="text" name="productnaam" value="" placeholder="productnaam" required><br/>
                             <label for="kostprijs">kostprijs/stuk:</label>
-                            <input type="text" name="kostprijs" value="" placeholder="kostprijs"><br/><br/>
+                            <input type="text" name="kostprijs" value="" placeholder="kostprijs" required><br/><br/>
                             <label for="productgroep">productgroep*:</label>
-                            <input type="text" name="productgroep" value="" placeholder="productgroep"><br/>
-                            <label for="productgroep_image">productgroep foto:</label>
-                            <input type="file" name="productgroep_image" value="" placeholder="productgroep_foto"><br/>
-                            of<br/>
-                            <label for="productgroep">productgroep*:</label>
-                            <select type="" name="productgroep" value="" placeholder="productgroep" >
-                                <option value="0"></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
+                            <select type="" name="productgroep" value="" placeholder="productgroep" required>
+                                <?php
+                                    foreach ($productgroepen as $productgroep) {
+                                ?>
+                                        <option value="<?php print($productgroep->GetProductgroep_id());?>">
+                                        <?php print($productgroep->GetProductgroep_naam());?></option>
+                                        <?php
+                                    }
+                                ?>
                             </select><br/><br/>
                             <input type="submit" value="toevoegen" name="toevoegen">
                         </form>
@@ -93,18 +107,43 @@
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="nieuwproductgroep"){?>
                     <!--Begin nieuwe productgroep pagina-->
-                        <form method="post" action="Register.php?registreer=reg">
+                        <form method="post" action="Beheren.php?productgroep=add" enctype="multipart/form-data">
                             <label for="productgroep">productgroep*:</label>
                             <input type="text" name="productgroep" value="" placeholder="productgroep" required><br/>
                             <label for="productgroep_image">productgroep foto:</label>
-                            <input type="file" name="productgroep_image" value="" placeholder="productgroep_foto"><br/>
+                            <input type="file" name="productgroep_image" id="" value="productgroep_image" placeholder="productgroep_foto" required><br/>
                             <input type="submit" value="toevoegen" name="toevoegen">
                         </form>
                     <!--Einde nieuwe productgroep pagina-->
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="productenbeheren"){?>
                     <!--Begin product beheren pagina-->
-                        
+                        <?php
+                        foreach ($productgroepen as $productgroep){
+                            if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){
+                                ?><a href="Beheren.php?inhoud=productenbeheren&productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/><br/>
+                                <ul class="productlijst">
+                                <?php
+                                foreach ($productlijstbyproductgroep_id as $prod){
+                                    ?>
+                                    <li class="lijst"><?php echo $prod->GetProduct(),'&nbsp&nbsp';?>
+                                        <?php echo $prod->GetKostprijs_stuk(),'&nbsp&nbsp';?>
+                                        <a href="Update.php?update=yes&productid=<?php echo $prod->GetProduct_id()?>">Update</a>
+                                        &nbsp-&nbsp
+                                        <a href="Beheren.php?inhoud=productenbeheren&delete=yes&productid=<?php echo $prod->GetProduct_id()?>">Delete</a>
+                                    </li><br/>
+                                    <?php
+                                }
+                                ?>
+                                </ul>
+                                <?php
+                            }else{
+                                ?><a href="Beheren.php?inhoud=productenbeheren&productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/>
+                                <img class="productgroep_foto" src="<?php echo $productgroep->GetProductgroep_image();?>" alt="<?php echo $productgroep->GetProductgroep_naam();?>" title="<?php echo $productgroep->GetProductgroep_naam();?>"><br/><br/>
+                                <?php 
+                            }
+                        }
+                        ?>
                     <!--Einde product beheren pagina-->
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="klanten"){?>

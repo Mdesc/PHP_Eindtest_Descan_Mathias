@@ -25,4 +25,9 @@ class productgroep_service{
         $productgroep= $productgroepDAO->getByProductgroep_naam($productgroep_naam);
         return $productgroep;
     }
+    public function getproductgroeplijst(){
+        $productgroepDAO= new productgroepDAO();
+        $productgroepen= $productgroepDAO->getProductgroepen();
+        return $productgroepen;
+    }
 }

@@ -25,5 +25,10 @@ class product_service{
         $lijstproducten= $productDAO->getProducten();
         return $lijstproducten;
     }
+    public function getProductById($product_id){
+        $productDAO= new productDAO();
+        $product= $productDAO->getByProduct_id($product_id);
+        return $product;
+    }
 }
 

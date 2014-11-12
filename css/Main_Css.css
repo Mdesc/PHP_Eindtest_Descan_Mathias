@@ -168,6 +168,7 @@ input{
     margin: auto;
     padding: 2.3em 3.5em;    
     height: 600px;
+    overflow: auto;
     
     padding: 0.7 1em;
     
@@ -180,7 +181,20 @@ input{
 
 .inhoud{
     background-color: inherit;
-    padding: 1em 0em 0em 0em
+    padding: 1em 0em 0em 0em;
+}
+
+.productgroep_foto{
+    width: 14em;
+    height: 10em
+}
+.productlijst{
+    background-color: inherit;
+    padding: 0em 2em; 
+}
+.lijst{
+    background-color: inherit;
+    
 }
 
 .footer{

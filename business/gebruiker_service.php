@@ -10,6 +10,11 @@ class gebruiker_service{
     }
     public function userInputCheck($naam,$voornaam,$straat,$huisnr,$bus,$postcode,$gemeente,$email){
         //heeft nog wat uitbreiding nodig
+        $naam= ucfirst(strtolower($naam));
+        $voornaam= ucfirst(strtolower($voornaam)); 
+        $straat= ucfirst(strtolower($straat));
+        $gemeente= ucfirst(strtolower($gemeente));
+        
         $naam= str_replace("/", "<p/>", $naam);
         $voornaam= str_replace("/", "<p/>", $voornaam); 
         $straat= str_replace("/", "<p/>", $straat);

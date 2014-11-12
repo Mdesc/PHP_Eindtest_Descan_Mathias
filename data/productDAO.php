@@ -28,7 +28,7 @@ class productDAO{
     }
     public function getByProduct_id($product_id){
         $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
-        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product where".$product_id;
+        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product where product_id=".$product_id;
         $resultset= $dbh->query($sql);
         $rij= $resultset->fetch();
         $product= product::create($rij["product_id"],$rij["productgroep_id"],$rij["product"],$rij["kostprijs_stuk"]);
