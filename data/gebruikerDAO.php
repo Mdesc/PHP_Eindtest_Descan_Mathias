@@ -71,5 +71,11 @@ class gebruikerDAO{
         }
         return $lijstgebruikers;
     }
+    public function changeBlockGebruiker($klant_id,$block){
+       $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+       $sql= "update gebruiker set block='".$block."' where klant_id= ".$klant_id; 
+       $dbh->exec($sql);
+       $dbh= null;
+    }
 }
 

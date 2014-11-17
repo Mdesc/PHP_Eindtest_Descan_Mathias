@@ -138,4 +138,8 @@ class gebruiker_service{
         $gebruikerlijst=$gebruikerDAO->getGebruikers();
         return $gebruikerlijst;
     }
+    public function changeBlock($klantid,$block){
+        $gebruikerDAO = new gebruikerDAO();
+        $gebruikerDAO->changeBlockGebruiker($klantid,$block);
+    }
 }

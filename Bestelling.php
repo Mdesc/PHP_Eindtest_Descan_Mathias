@@ -15,6 +15,13 @@ $gemeentesvc= new gemeente_service();
 $productsvc= new product_service();
 $productgroepsvc= new productgroep_service();
 
+if(isset($_SESSION['bestelrow'])){
+    $bestelrow=$_SESSION['bestelrow'];
+}
+if(isset($_SESSION['winkelmand'])){
+    $winkelmand=  unserialize($_SESSION['winkelmand']);
+}
+
 if(isset($_GET["login"]) && $_GET["login"]=="start"){
     $email=$_POST["email"];
     $wachtwoord=$_POST["wachtwoord"];
@@ -33,8 +40,60 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
     $block= $gebruiker->GetBlock();
 }
-if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["user_level"]) && $_SESSION["user_level"]=="klant"){
+if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["user_level"]) && $_SESSION["user_level"]=="klant" && $block==false){
+    
+    $productgroepen=$productgroepsvc->getproductgroeplijst();
+    if(isset($_GET["productgroepview"])){
+        $productgroepview_id=$_GET["productgroepview"];
+        //check if exist{
+        $exist=$productgroepsvc->getByProductgroep_id($productgroepview_id);
+        if($exist->GetProductgroep_id()==0){
+        //dit is om mensen te weerhouden van link search aante passen met foute get
+        }else{
+            $productlijstbyproductgroep_id=$productsvc->getByproductgroep_id($productgroepview_id);
+        }
+    }
+    
+//    $productgroepcount=  count($productgroepen);
+//    print_r($productgroepcount);
+    if(!isset($winkelmand)){
+        $winkelmand= array();        
+    }
+    if(!isset($bestelrow) || $bestelrow==0){
+        $bestelrow=1;
+        echo $bestelrow;
+    }
+    
+    if(isset($_GET["addproduct"]) && $_GET["addproduct"]=='yes'){
+        
+        $product_id = $_POST['product_id'];
+        $aantal = $_POST['aantal'];
+        
+        $datetime = new DateTime();
+        $datum_gemaakt = $datetime->format('Y-m-d H:i:s');
+        $datum_afhalen = $datetime->format('Y-m-d H:i:s');
+        
+        $winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,$bestelrow,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen);
+        $bestelrow= $bestellingsvc->bestelrowcount($bestelrow);
+        //hieronderstaand word gebruikt om meteen terug naar ander pagina te gaan
+        if(isset($_GET['productgroepview'])){
+            $productview=$_GET['productgroepview'];
+            $location="location: Bestelling.php?productgroepview=".$productview." ";
+            //header($location);            
+        }else{
+            //header("location: Bestelling.php");
+        }
+        //-------------------------------------------------------------------------
+        
+    }else{
+        
+    }
+    
     include ("/presentation/Bestelling_presentation.php");
 }else{
-    header("location: home.php");
+    if(!isset($_SESSION["user_level"])){
+        header("location: home.php");
+    }elseif($block==true){
+        header("location: home.php?blocked=yes");
+    }
 }

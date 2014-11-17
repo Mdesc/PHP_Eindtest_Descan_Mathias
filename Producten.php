@@ -15,13 +15,6 @@ $gemeentesvc= new gemeente_service();
 $productsvc= new product_service();
 $productgroepsvc= new productgroep_service();
 
-if(isset($_GET["login"]) && $_GET["login"]=="start"){
-    $email=$_POST["email"];
-    $wachtwoord=$_POST["wachtwoord"];
-    $gebruikersvc->userInputCheck(0,0,0,0,0,0,0,$email);
-    
-    $gebruikersvc->login($email, $wachtwoord);
-}
 if(isset($_GET["logout"])){
     $key_out=$_GET["logout"];
     $gebruikersvc->logout($key_out);
@@ -33,5 +26,19 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
     $block= $gebruiker->GetBlock();
 }
+$productgroepen=$productgroepsvc->getproductgroeplijst();
+if(isset($_GET["productgroepview"])){
+    $productgroepview_id=$_GET["productgroepview"];
+    //check if exist{
+    $exist=$productgroepsvc->getByProductgroep_id($productgroepview_id);
+    if($exist->GetProductgroep_id()==0){
+        //dit is om mensen te weerhouden van link search aante passen met foute get
+    }else{
+        $productlijstbyproductgroep_id=$productsvc->getByproductgroep_id($productgroepview_id);
+    }
+}
+//pagina view
+include ("/presentation/Product_presentation.php"); 
+   
+//    header("location: Home.php");
 
-include ("/presentation/Product_presentation.php");

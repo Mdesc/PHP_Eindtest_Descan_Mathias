@@ -56,9 +56,29 @@
                 </section>
             </header>
             <section class="body">
-                <?php
-                                    echo 'product';
-                ?>
+                    <?php
+                    foreach ($productgroepen as $productgroep){
+                        if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){
+                            ?><a href="Producten.php?productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/><br/>
+                            <ul class="productlijst">
+                            <?php
+                            foreach ($productlijstbyproductgroep_id as $prod){
+                                ?>
+                                <li class="lijst"><?php echo $prod->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                    <?php echo $prod->GetKostprijs_stuk(),'&nbsp&nbsp';?>
+                                </li><br/>
+                                <?php
+                            }
+                            ?>
+                            </ul>
+                            <?php
+                        }else{
+                            ?><a href="Producten.php?productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/>
+                            <img class="productgroep_foto" src="<?php echo $productgroep->GetProductgroep_image();?>" alt="<?php echo $productgroep->GetProductgroep_naam();?>" title="<?php echo $productgroep->GetProductgroep_naam();?>"><br/><br/>
+                            <?php 
+                        }
+                    }
+                    ?>
             </section>
             <footer class="footer">
                 <p class="footerinfo">Site gemaakt door Mathias Descan &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; PHP eindtest &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; fictieve bakker shop</p>

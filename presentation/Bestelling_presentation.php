@@ -34,12 +34,11 @@
                 <section class="login">
                     <?php
                     if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
-                    ?>
-                    welcome : 
-                    <?php
+                    ?>welcome : <?php
                     echo $gebruiker->GetVoornaam();
                     echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
-                    
+                    echo '<br/>';?>
+                    <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $bestelrow-1; ?>)</a><br/><?php
                     }else{
                     ?>
                         <form method="post" action="Home.php?login=start">
@@ -57,7 +56,54 @@
             </header>
             <section class="body">
                 <?php
-                                    echo 'bestelling';
+                if(isset($_GET['Winkelmand']) && $_GET['Winkelmand']=='yes'){
+                    //inhoud van winkel mandje
+                    foreach($winkelmand as $item){?>
+                        <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
+                        <?php echo $item->GetKostprijs_stuk(),'&nbsp&nbsp';?>           
+                        </li><?php
+                    }
+                }else{
+                    if(isset($_GET['mijn']) && $_GET['mijn']=='view'){
+                        ?>
+                        <a href='Bestelling.php?'>Terug naar producten lijst</a><br/>
+                        <br/>
+                        <?php
+                        //hier komt wat er besteld is  voor de klant voor de komende dagen
+                    }else{
+                    ?>
+                    <a href='Bestelling.php?mijn=view'>Mijn geplaatste bestellingen bekijken</a><br/>
+                    <br/>
+                    <?php
+                        foreach ($productgroepen as $productgroep){
+                            if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){
+                                ?><a href="Bestelling.php?productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/><br/>
+                                <ul class="productlijst">
+                                <?php
+                                foreach ($productlijstbyproductgroep_id as $prod){
+                                    ?>
+                                    <li class="lijst"><?php echo $prod->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                        <?php echo $prod->GetKostprijs_stuk(),'&nbsp&nbsp';?>           
+                                        <form method="post" action="Bestelling.php?addproduct=yes&productgroepview=<?php echo $prod->GetProductgroep_id();?>">
+                                            <input type="number" name="aantal" value="" placeholder="aantal">
+                                            <input type="hidden" name="product_id" value="<?php echo $prod->GetProduct_id(); ?>">
+                                            <input type="submit" id="toevoegen" value="toevoegen" name="toevoegen">
+                                        </form>
+                                    </li>
+                                    <br/>
+                                    <?php
+                                }
+                                ?>
+                                </ul>
+                                <?php
+                            }else{
+                                ?><a href="Bestelling.php?productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/>
+                                <img class="productgroep_foto" src="<?php echo $productgroep->GetProductgroep_image();?>" alt="<?php echo $productgroep->GetProductgroep_naam();?>" title="<?php echo $productgroep->GetProductgroep_naam();?>"><br/><br/>
+                                <?php 
+                            }
+                        }
+                    }
+                }
                 ?>
             </section>
             <footer class="footer">

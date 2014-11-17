@@ -130,6 +130,17 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
     //begin klanten beheer
     if(isset($_GET["inhoud"]) && $_GET["inhoud"]=="klanten"){
         $gebruikerlijst=$gebruikersvc->getgebruikers();
+        if(isset($_GET["klantid"])){
+            $klantblockid=$_GET["klantid"];
+            if(isset($_GET["block"]) && $_GET["block"]=="undo"){
+                $block=false;
+                $gebruikersvc->changeBlock($klantblockid, $block);
+            }elseif(isset($_GET["block"]) && $_GET["block"]=="make"){
+                $block=true;
+                $gebruikersvc->changeBlock($klantblockid, $block);
+            }
+            header("location: beheren.php?inhoud=klanten");
+        }
     }
     //einde klanten beheer
     //pagina view

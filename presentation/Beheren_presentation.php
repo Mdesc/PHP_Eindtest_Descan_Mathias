@@ -155,7 +155,7 @@
                         if(isset($gebr) && $gebr->GetBlock()==true){
                             ?>
                             <li class="gebrblock"><?php echo $gebr->GetNaam(),'&nbsp&nbsp',$gebr->GetVoornaam(),'&nbsp&nbsp',$gebr->GetEmail(),'&nbsp&nbsp';?>
-                            <a href="">unblock</a>
+                            <a href="beheren.php?inhoud=klanten&block=undo&klantid=<?php echo $gebr->GetKlant_id(); ?>" >unblock</a>
                             </li>
                             <?php
                         }
@@ -169,7 +169,7 @@
                         if(isset($gebr) && $gebr->GetBlock()==false){
                             ?>
                             <li class="gebrfree"><?php echo $gebr->GetNaam(),'&nbsp&nbsp',$gebr->GetVoornaam(),'&nbsp&nbsp',$gebr->GetEmail(),'&nbsp&nbsp';?>
-                            <a href="">block</a>
+                            <a href="beheren.php?inhoud=klanten&block=make&klantid=<?php echo $gebr->GetKlant_id(); ?>">block</a>
                             </li>
                             <?php
                         }

@@ -150,6 +150,7 @@ html,head,body,section,header,footer,div,ul,li{
     float: left;
     color: white;
     padding: 1.3em 1em 1em 1em;
+    overflow: auto;
     height: inherit;
 }
 
@@ -161,7 +162,9 @@ input{
     margin-left: 12.96em;
     padding: 0.1em 1.4em 0.1em 1.4em;
 }
-
+.white{
+    color: white;
+}
 
 .body{
     background-color: #fff5b3;
@@ -195,6 +198,19 @@ input{
 .lijst{
     background-color: inherit;
     
+}
+
+.free{
+    background-color: inherit;
+}
+.block{
+    background-color: inherit;
+}
+.gebrfree{
+    background-color: inherit;
+}
+.gebrblock{
+    background-color: inherit;
 }
 
 .footer{

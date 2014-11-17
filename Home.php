@@ -39,6 +39,24 @@ $bestellingsvc= new bestelling_service();
 //$bestellingsvc->addBestelling(1,1,1,$datum,$datum);                                       //add
 //$bestellingsvc->deleteBestelling(8);                                                      //delete
 //$bestellingsvc->updateBestelling(2,5,16,100,$datum,$datum);                                 //update
+
+$datetime = new DateTime();
+$datum = $datetime->format('Y-m-d H');
+//print_r($datum);
+//
+//$winkelmand= array();
+//$winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,1,5,2,3,$datum,$datum);
+//$winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,2,5,8,1,$datum,$datum);
+//$winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,3,5,12,1,$datum,$datum);
+//$winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,2,5,5,1,$datum,$datum);
+//print_r($winkelmand);
+//print_r($_SESSION['winkelmand']);
+
+//$_SESSION['winkelmand']=$winkelmand;
+
+//echo '<br/><br/>';
+
+//print_r($_SESSION['winkelmand']);
   
 $gemeentesvc= new gemeente_service();
 //$gemeentesvc->addGemeente(8610,"gemeente");                                               //add

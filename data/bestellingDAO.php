@@ -26,4 +26,30 @@ class bestellingDAO{
         $dbh->exec($sql);
         $dbh= null;
     }
+    public function createWinkelmandRow($bestelrow,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen){
+        $winkelmandrow=  bestelling::create($bestelrow,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen);
+        return $winkelmandrow;
+    }
+    public function getBestellingByKlant_id($bestellingen,$klant_id,$datum_start,$datum_end){//datum die meegegven word door vorig functie,3maal max drie dagen verder bestellen
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql= "select bestelling_id,klant_id,product_id,aantal,datum_gemaakt,datum_afhalen from bestelling where klant_id=".$klant_id." and datum_afhalen between'".$datum_start."' and '".$datum_end."' ";
+        $resultset=$dbh->query($sql);
+        foreach ($resultset as $rij){
+            $bestelling=  bestelling::create($rij['bestelling_id'],$rij['klant_id'],$rij['product_id'],$rij['aantal'],$rij['datum_gemaakt'],$rij['datum_afhalen']);
+            array_push($bestellingen,$bestelling);
+        }
+        $dbh= null; 
+        return $bestellingen;
+    }
+    public function getbestellingen($datum_start,$datum_end){
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql= "select bestelling_id,klant_id,product_id,aantal,datum_gemaakt,datum_afhalen from bestelling where datum_afhalen between'".$datum_start."' and '".$datum_end."' ";
+        $resultset=$dbh->query($sql);
+        foreach ($resultset as $rij){
+            $bestelling=  bestelling::create($rij['bestelling_id'],$rij['klant_id'],$rij['product_id'],$rij['aantal'],$rij['datum_gemaakt'],$rij['datum_afhalen']);
+            array_push($bestellingen,$bestelling);
+        }
+        $dbh= null; 
+        return $bestellingen;
+    }
 }
