@@ -91,6 +91,23 @@ class bestelling_service{
         $bestelrow=$bestelrow+1;
         $_SESSION['bestelrow']=$bestelrow;
         return$bestelrow;
-    }  
+    }
+    public function removebestelrow($bestelrow){
+        if(isset($_SESSION['winkelmand'])){
+            $winkelmand=  unserialize($_SESSION['winkelmand']);
+            if(isset($_SESSION['aantalitems'])){
+                $aantalitems=$_SESSION['aantalitems'];
+            }
+            $newwinkelmand=array();
+            foreach ($winkelmand as $row){
+                if($bestelrow!=$row->GetBestelling_id()){
+                    array_push($newwinkelmand,$row);                    
+                }
+            }
+            $aantalitems=$aantalitems-1;
+            $_SESSION['aantalitems']=$aantalitems;
+            $_SESSION['winkelmand']=  serialize($newwinkelmand);
+        }
+    }
 }
 

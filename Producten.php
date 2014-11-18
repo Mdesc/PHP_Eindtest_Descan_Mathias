@@ -21,6 +21,12 @@ if(isset($_GET["logout"])){
     header("location: Home.php");
 }
 
+if(isset($_SESSION['aantalitems'])){
+    $aantalitems=$_SESSION['aantalitems'];
+}else{
+    $aantalitems=0;
+}
+
 if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $klant_id= $_SESSION["klant_id"];
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);

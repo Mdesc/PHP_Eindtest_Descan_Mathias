@@ -21,6 +21,9 @@ if(isset($_SESSION['bestelrow'])){
 if(isset($_SESSION['winkelmand'])){
     $winkelmand=  unserialize($_SESSION['winkelmand']);
 }
+if(isset($_SESSION['aantalitems'])){
+    $aantalitems=$_SESSION['aantalitems'];
+}
 
 if(isset($_GET["login"]) && $_GET["login"]=="start"){
     $email=$_POST["email"];
@@ -61,7 +64,9 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
     }
     if(!isset($bestelrow) || $bestelrow==0){
         $bestelrow=1;
-        echo $bestelrow;
+    }
+    if(!isset($aantalitems)){
+        $aantalitems=0;
     }
     
     if(isset($_GET["addproduct"]) && $_GET["addproduct"]=='yes'){
@@ -72,9 +77,12 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
         $datetime = new DateTime();
         $datum_gemaakt = $datetime->format('Y-m-d H:i:s');
         $datum_afhalen = $datetime->format('Y-m-d H:i:s');
-        
-        $winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,$bestelrow,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen);
-        $bestelrow= $bestellingsvc->bestelrowcount($bestelrow);
+        if($aantal>0){
+            $winkelmand= $bestellingsvc->addtowinkelmand($winkelmand,$bestelrow,$klant_id,$product_id,$aantal,$datum_gemaakt,$datum_afhalen);
+            $bestelrow= $bestellingsvc->bestelrowcount($bestelrow);
+            $aantalitems=$aantalitems+1;
+            $_SESSION['aantalitems']=$aantalitems;
+        }
         //hieronderstaand word gebruikt om meteen terug naar ander pagina te gaan
         if(isset($_GET['productgroepview'])){
             $productview=$_GET['productgroepview'];
@@ -87,6 +95,13 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
         
     }else{
         
+    }
+    
+    //remove product
+    if(isset($_GET['remove']) && isset($_GET['bestelrow']) && $_GET['remove']=='yes' && $_GET['bestelrow']>0){
+        $removeditem=$_GET['bestelrow'];
+        $bestellingsvc->removebestelrow($removeditem);
+        header("location: Bestelling.php?Winkelmand=yes");
     }
     
     include ("/presentation/Bestelling_presentation.php");

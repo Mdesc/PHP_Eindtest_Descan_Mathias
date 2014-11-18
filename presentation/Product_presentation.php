@@ -34,12 +34,15 @@
                 <section class="login">
                     <?php
                     if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
-                    ?>
-                    welcome : 
-                    <?php
-                    echo $gebruiker->GetVoornaam();
-                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
-                    
+                        ?>
+                        welcome : 
+                        <?php
+                        echo $gebruiker->GetVoornaam();
+                        echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                        if(isset($_SESSION["user_level"]) && $_SESSION["user_level"] != "admin"){
+                            echo '<br/><br/>';?>
+                            <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
+                        }
                     }else{
                     ?>
                         <form method="post" action="Home.php?login=start">

@@ -37,8 +37,8 @@
                     ?>welcome : <?php
                     echo $gebruiker->GetVoornaam();
                     echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
-                    echo '<br/>';?>
-                    <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $bestelrow-1; ?>)</a><br/><?php
+                    echo '<br/><br/>';?>
+                    <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
                     }else{
                     ?>
                         <form method="post" action="Home.php?login=start">
@@ -58,9 +58,13 @@
                 <?php
                 if(isset($_GET['Winkelmand']) && $_GET['Winkelmand']=='yes'){
                     //inhoud van winkel mandje
+                    if($aantalitems==0){
+                        echo 'geen items in winkelmand';
+                    }
                     foreach($winkelmand as $item){?>
                         <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
-                        <?php echo $item->GetKostprijs_stuk(),'&nbsp&nbsp';?>           
+                        <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp';?>
+                        <a href="Bestelling.php?remove=yes&bestelrow=<?php echo $item->GetBestelling_id() ?>"/>remove</a>    
                         </li><?php
                     }
                 }else{
