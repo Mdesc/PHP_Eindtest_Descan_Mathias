@@ -40,8 +40,10 @@ $bestellingsvc= new bestelling_service();
 //$bestellingsvc->deleteBestelling(8);                                                      //delete
 //$bestellingsvc->updateBestelling(2,5,16,100,$datum,$datum);                                 //update
 
-$datetime = new DateTime();
-$datum = $datetime->format('Y-m-d H');
+//$datetime = new DateTime();
+//$datum = $datetime->format('Y-m-d H');
+
+//$bestellingsvc->getBestellingenMorgenTotalProducts();
 //print_r($datum);
 //
 //$winkelmand= array();

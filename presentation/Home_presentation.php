@@ -60,8 +60,28 @@
             </header>
             <section class="body">
                 <?php
-                                    echo 'Home';
+                if(isset($_GET['blocked']) && $_GET['blocked']=='yes'){
+                    ?><p>u werd geblocked en hebt het recht niet meer om op deze site te bestellen</p><?php
+                }
                 ?>
+                <h2>Welkom beste bezoeker</h2>
+                <p>Hier op onze website vind u een breed assortiment aan producten. 
+                    Die allemaal zeer verzord worden bereid. Door onze gemeentelijke bakker op het plein. </p>
+                <u><h4>Enkele regels in verband met bestellen</h4></u>
+                <ul class="regels">
+                    <li>
+                        Om te kunnen bestellen dient u zich te registreren.
+                    </li>
+                    <li>
+                        U kunt bestellen uit ons assortiment, maximaal 3 dagen verder en minimaal.
+                    </li>
+                    <li>
+                        Indien u voor de volgende dag wil bestellen dient dit voor 20uur gebeuren.
+                    </li>
+                    <li>
+                        Indien u dingen vergeet bij bestelling kunt u voorgaande annuleren om te corrigeren.
+                    </li>
+                </ul>
             </section>
             <footer class="footer">
                 <p class="footerinfo">Site gemaakt door Mathias Descan &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; PHP eindtest &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; fictieve bakker shop</p>

@@ -30,5 +30,9 @@ class product_service{
         $product= $productDAO->getByProduct_id($product_id);
         return $product;
     }
+    public function deleteProductgroep($productgroep_id){
+        $productDAO= new productDAO();
+        $productDAO->deleteProduct($productgroep_id);
+    }
 }
 

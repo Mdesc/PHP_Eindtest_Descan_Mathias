@@ -56,4 +56,10 @@ class productDAO{
         }
         return $lijstproducten;
     }
+    public function deleteByProductgroep($productgroep_id){
+        $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
+        $sql="delete from product where productgroep_id= ".$productgroep_id;
+        $dbh->exec($sql);
+        $dbh= null; 
+    }
 }

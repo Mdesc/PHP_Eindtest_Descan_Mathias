@@ -115,7 +115,7 @@ class gebruiker_service{
             $klant_id= $this->getKlant_idByEmail($email);
             $this->createSessieInfo($status,$user_level,$klant_id);
             setcookie("username",$email);
-            setcookie("wachtwoord",$wachtwoord);
+            //setcookie("wachtwoord",$wachtwoord);
         }
     }
     public function createSessieInfo($status,$user_level,$klant_id){

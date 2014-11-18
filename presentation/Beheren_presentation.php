@@ -121,7 +121,8 @@
                         <?php
                         foreach ($productgroepen as $productgroep){
                             if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){
-                                ?><a href="Beheren.php?inhoud=productenbeheren&productgroepview=<?php echo $productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a><br/><br/>
+                                ?><a href="Beheren.php?inhoud=productenbeheren&productgroepview=<?php echo $productgroepid=$productgroep->GetProductgroep_id();?>"/><?php echo $productgroep->GetProductgroep_naam();?></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="Beheren.php?delete=yes&productgroepid=<?php echo $productgroepid; ?>">delete productgroep</a><br/><br/>
                                 <ul class="productlijst">
                                 <?php
                                 foreach ($productlijstbyproductgroep_id as $prod){
@@ -161,7 +162,7 @@
                         }
                     }
                     ?>
-                    </ul>
+                    </ul><br/>
                     <u>vrije gebruikers</u><br/><br/>
                     <ul class="free">
                     <?php
@@ -180,7 +181,13 @@
                     <?php }
                     if(!isset($_GET["inhoud"])){?>
                     <!--Begin bestellingen pagina-->
-                        
+                        <?php
+                        foreach($bestellingen as $item){?>
+                        <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp';?>
+                        <?php echo 'aantal : ',$aantal=$item->GetAantal();?>  
+                        </li><?php
+                        }
+                        ?>
                     <!--Einde bestellingen pagina-->
                     <?php }?>
                 </div>

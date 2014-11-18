@@ -58,22 +58,150 @@
                 <?php
                 if(isset($_GET['Winkelmand']) && $_GET['Winkelmand']=='yes'){
                     //inhoud van winkel mandje
+                    ?>
+                        <p class="warning">Pas op u kunt slecht een bestelling per dag plaatsen</p>
+                        <br/>
+                    <?php
                     if($aantalitems==0){
                         echo 'geen items in winkelmand';
                     }
                     foreach($winkelmand as $item){?>
                         <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
-                        <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp';?>
-                        <a href="Bestelling.php?remove=yes&bestelrow=<?php echo $item->GetBestelling_id() ?>"/>remove</a>    
+                        <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp'; $totaal=$bestellingsvc->totaalwinkelmand($totaal,$totpro);?>
+                        <a href="Bestelling.php?remove=yes&bestelrow=<?php echo $item->GetBestelling_id() ?>">remove</a>    
                         </li><?php
                     }
+                    ?><u>totaal winkelmand :</u><?php echo '&nbsp',$totaal;
+                    ?>
+                    <form method="post" action="bestelling.php?checkout=yes">
+                        <label for="afhaal_datum">afhaal datum:</label>
+                        <select type="" name="afhaal_datum" value="" placeholder="afhaal datum" required>
+                            <?php
+                                  if($morgen==true && $overmorgen==true && $overovermorgen==true){
+                            ?>
+                            <option value="onmogelijk">geen bestelling mogelijk</option>
+                            <?php
+                                  }
+                                  if($morgen!=true){ 
+                            ?>
+                            <option value="<?php echo $datum_morgen; ?>"><?php echo $datum_morgen; ?></option>
+                            <?php }
+                                  if($overmorgen!=true){
+                            ?>
+                            <option value="<?php echo $datum_overmorgen; ?>"><?php echo $datum_overmorgen; ?></option>
+                            <?php }
+                                  if($overovermorgen!=true){
+                            ?>
+                            <option value="<?php echo $datum_overovermorgen; ?>"><?php echo $datum_overovermorgen; ?></option>
+                            <?php }
+                            ?>
+                        </select><br/>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <input type="submit" id="checkout" value="checkout" name="submit">
+                    </form>
+                    <?php
                 }else{
                     if(isset($_GET['mijn']) && $_GET['mijn']=='view'){
                         ?>
                         <a href='Bestelling.php?'>Terug naar producten lijst</a><br/>
                         <br/>
+                        <u>Vandaag af te halen</u><br/>
                         <?php
-                        //hier komt wat er besteld is  voor de klant voor de komende dagen
+//                        if(isset($bestellingmij) && $vandaag=$getdatum_afhalen){
+//                            
+//                        }
+                        if($vandaag==true){
+                            if(isset($_GET['moment']) && $_GET['moment']=='vandaag'){
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view">Bestelling vandaag af te halen verbergen</a><br/><br/>
+                                <?php
+                                foreach($bestellingmij as $item){?>
+                                <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp'; $totaal=$bestellingsvc->totaalwinkelmand($totaal,$totpro);?>  
+                                </li><?php
+                                }
+                                ?><u>totaal bestelling :</u><?php echo '&nbsp',$totaal; 
+                                ?>
+                                <br/>
+                                <?php
+                            }else{
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view&moment=vandaag">Bestelling vandaag af te halen bekijken</a>
+                                <?php
+                            }
+                        }else{
+                            echo "geen besteling af te halen";
+                        }
+                        ?>
+                        <br/>
+                        <u>Andere bestellingen</u><br/>
+                        <?php
+                        if($morgen==true){
+                            if(isset($_GET['moment']) && $_GET['moment']=='morgen'){
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view">Bestelling voor morgen af te halen verbergen</a><br/><br/>
+                                <?php
+                                foreach($bestellingmij as $item){?>
+                                <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp'; $totaal=$bestellingsvc->totaalwinkelmand($totaal,$totpro);?>  
+                                </li><?php
+                                }
+                                ?><u>totaal bestelling :</u><?php echo '&nbsp',$totaal,'&nbsp&nbsp&nbsp&nbsp'; 
+                                ?>
+                                <a href="Bestelling.php?mijn=view&moment=morgen&anulatie=annuleren">Annuleren</a>
+                                <br/><br/>
+                                <?php
+                            }else{
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view&moment=morgen">Bestelling voor morgen af te halen bekijken</a><br/>
+                                <?php
+                            }
+                        }
+                        if($overmorgen==true){
+                            if(isset($_GET['moment']) && $_GET['moment']=='overmorgen'){
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view">Bestelling voor overmorgen af te halen verbergen</a><br/><br/>
+                                <?php
+                                foreach($bestellingmij as $item){?>
+                                <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp'; $totaal=$bestellingsvc->totaalwinkelmand($totaal,$totpro);?>  
+                                </li><?php
+                                }
+                                ?><u>totaal bestelling :</u><?php echo '&nbsp',$totaal,'&nbsp&nbsp&nbsp&nbsp'; 
+                                ?>
+                                <a href="Bestelling.php?mijn=view&moment=overmorgen&anulatie=annuleren">Annuleren</a>
+                                <br/><br/>
+                                <?php
+                            }else{
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view&moment=overmorgen">Bestelling voor overmorgen af te halen bekijken</a><br/>
+                                <?php
+                            }
+                        }
+                        if($overovermorgen==true){
+                            if(isset($_GET['moment']) && $_GET['moment']=='overovermorgen'){
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view">Bestelling voor overovermorgen af te halen verbergen</a><br/><br/>
+                                <?php
+                                foreach($bestellingmij as $item){?>
+                                <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
+                                <?php echo $stuks=$productmand->GetKostprijs_stuk(),'&nbsp&nbsp','aantal : ',$aantal=$item->GetAantal(),'&nbsp&nbsp','totaal product prijs : ',$totpro=$aantal*$stuks,'&nbsp&nbsp'; $totaal=$bestellingsvc->totaalwinkelmand($totaal,$totpro);?>  
+                                </li><?php
+                                }
+                                ?><u>totaal bestelling :</u><?php echo '&nbsp',$totaal,'&nbsp&nbsp&nbsp&nbsp'; 
+                                ?>
+                                <a href="Bestelling.php?mijn=view&moment=overovermorgen&anulatie=annuleren">Annuleren</a>
+                                <br/><br/>
+                                <?php
+                            }else{
+                                ?>
+                                &nbsp&nbsp - <a href="Bestelling.php?mijn=view&moment=overovermorgen">Bestelling voor overovermorgen af te halen bekijken</a><br/>
+                                <?php
+                            }
+                        }
+                        if($morgen==false && $overmorgen==false && $overovermorgen==false){
+                            echo 'geen bestelling voor de volgende dagen';
+                        }
                     }else{
                     ?>
                     <a href='Bestelling.php?mijn=view'>Mijn geplaatste bestellingen bekijken</a><br/>

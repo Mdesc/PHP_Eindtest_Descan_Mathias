@@ -126,6 +126,12 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
         $product_id=$_GET["productid"];
         $productsvc->deleteProduct($product_id);
     }
+    if(isset($_GET["delete"]) && isset($_GET['productgroepid']) && $_GET['delete']=="yes"){
+        $productgroepid= $_GET['productgroepid'];
+        $productsvc->deleteProductgroep($productgroepid);
+        $productgroepsvc->deleteProductgroep($productgroepid);
+        header('location :Beheren.php?inhoud=productenbeheren');
+    }
     //einde product beheer
     //begin klanten beheer
     if(isset($_GET["inhoud"]) && $_GET["inhoud"]=="klanten"){
@@ -143,6 +149,9 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
         }
     }
     //einde klanten beheer
+    //begin bestellingen
+    $bestellingen=$bestellingsvc->getBestellingenMorgen();
+    //einde bestellingen
     //pagina view
     include ("/presentation/Beheren_presentation.php"); 
    

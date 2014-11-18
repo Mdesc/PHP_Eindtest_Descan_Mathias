@@ -233,6 +233,13 @@ input{
     -moz-border-bottom-left-radius: 0.8em;
     -moz-border-bottom-right-radius: 0.8em;
 }
+
+ul,li{
+    background-color: inherit;
+}
+.regels{
+    margin: 0em 0em 0em 2em;
+}
 .footerinfo{
     margin: 0em 0em 0em 0em; 
     padding: 1.5em 0em 1em 13em;
