@@ -299,9 +299,36 @@ class bestelling_service{
         $bestellingen= $bestellingDAO->getBestellingtijd($bestellingen,$datum_start,$datum_end);
         return $bestellingen;
     }
-    public function getBestellingenMorgenTotalProducts(){
-        $bestellingen= $this->getBestellingenMorgen();
-        return$bestellingen;
+    public function getBestellingenMorgenTotalProducts($lijstProducten){
+        $allbestellingen= $this->getBestellingenMorgen();
+        $lijstProducten;//zijn de bestellingen voor de volgende dag
+        $allProductenBesteldMorgen= array();
+        $aantal=0;
+        $row=0;
+        $col=0;
+        //product_id ,productgroep_id,aantal
+        foreach ($lijstProducten as $prod){
+            /*echo*/ $allProductenBesteldMorgen[$row][$col]=$prod->GetProduct_id();
+            $col=$col+1;
+            /*echo*/ $allProductenBesteldMorgen[$row][$col]=$prod->GetProductgroep_id();
+            $col=$col+1;
+            /*echo*/ $allProductenBesteldMorgen[$row][$col]=$aantal;
+            //echo '<br/>';
+            $row=$row+1;
+            $col=0;
+        }
+        
+        //echo $allProductenBesteldMorgen[13][2];
+        
+        
+        foreach($allbestellingen as $prod){
+            $product_id=$prod->GetProduct_id();
+            $aantal=$prod->GetAantal();
+            
+            $allProductenBesteldMorgen[$product_id][2]=$aantal+$allProductenBesteldMorgen[$product_id][2];
+        }
+        
+        return $allProductenBesteldMorgen;
     }    
 }
 

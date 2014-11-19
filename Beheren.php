@@ -150,7 +150,9 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
     }
     //einde klanten beheer
     //begin bestellingen
-    $bestellingen=$bestellingsvc->getBestellingenMorgen();
+    $product_lijst=$productsvc->getProducten();//lijst van alle producten
+    $productgroepen;//lijst van alle productgroepen
+    $totaalMorgenBesteld=$bestellingsvc->getBestellingenMorgenTotalProducts($product_lijst);
     //einde bestellingen
     //pagina view
     include ("/presentation/Beheren_presentation.php"); 

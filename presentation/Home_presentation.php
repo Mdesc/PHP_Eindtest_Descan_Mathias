@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                         welcome : 
                         <?php
                         echo $gebruiker->GetVoornaam();
-                        echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                        echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                         if(isset($_SESSION["user_level"]) && $_SESSION["user_level"] != "admin"){
                             echo '<br/><br/>';?>
                             <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
@@ -61,7 +61,7 @@
             <section class="body">
                 <?php
                 if(isset($_GET['blocked']) && $_GET['blocked']=='yes'){
-                    ?><p>u werd geblocked en hebt het recht niet meer om op deze site te bestellen</p><?php
+                    ?><p class="blockmessage">u werd geblocked en hebt het recht niet meer om op deze site te bestellen</p><?php
                 }
                 ?>
                 <h2>Welkom beste bezoeker</h2>
@@ -73,7 +73,7 @@
                         Om te kunnen bestellen dient u zich te registreren.
                     </li>
                     <li>
-                        U kunt bestellen uit ons assortiment, maximaal 3 dagen verder en minimaal.
+                        U kunt bestellen uit ons assortiment, maximaal 3 dagen verder/minimaal 1 dag verder.
                     </li>
                     <li>
                         Indien u voor de volgende dag wil bestellen dient dit voor 20uur gebeuren.
@@ -82,6 +82,7 @@
                         Indien u dingen vergeet bij bestelling kunt u voorgaande annuleren om te corrigeren.
                     </li>
                 </ul>
+                <img alt="taart" src="Images/taart_page5678.jpg" title="taart" class="homeimg" width="320" height="240"/>
             </section>
             <footer class="footer">
                 <p class="footerinfo">Site gemaakt door Mathias Descan &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; PHP eindtest &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; fictieve bakker shop</p>

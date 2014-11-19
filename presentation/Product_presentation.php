@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                         welcome : 
                         <?php
                         echo $gebruiker->GetVoornaam();
-                        echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                        echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                         if(isset($_SESSION["user_level"]) && $_SESSION["user_level"] != "admin"){
                             echo '<br/><br/>';?>
                             <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
@@ -59,6 +59,7 @@
                 </section>
             </header>
             <section class="body">
+                <h2>Producten</h2>
                     <?php
                     foreach ($productgroepen as $productgroep){
                         if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){

@@ -172,7 +172,9 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true && isset($_SESSION["u
     //checkout
     if(isset($_GET['checkout']) && $_GET['checkout']=='yes'){
         $afhaal_datum=$_POST['afhaal_datum'];
-        $bestellingsvc->checkout($afhaal_datum);
+        if($afhaal_datum!=0){
+            $bestellingsvc->checkout($afhaal_datum);
+        }
     }
     
     include ("/presentation/Bestelling_presentation.php");

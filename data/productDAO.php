@@ -48,7 +48,7 @@ class productDAO{
     public function getProducten(){
         $lijstproducten= array();
         $dbh= new PDO(DBconfig::$DB_CONNSTRING,  DBconfig::$DB_USERNAME,  DBconfig::$DB_PASSWORD);
-        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product order by productgroep_id";
+        $sql= "select product_id,productgroep_id,product,kostprijs_stuk from product";
         $resultset= $dbh->query($sql);
         foreach ($resultset as $rij){
             $product= product::create($rij["product_id"],$rij["productgroep_id"],$rij["product"],$rij["kostprijs_stuk"]);

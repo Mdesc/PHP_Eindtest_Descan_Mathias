@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                     welcome : 
                     <?php
                     echo $gebruiker->GetVoornaam();
-                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                    echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                     
                     }else{
                     ?>
@@ -68,6 +68,7 @@
                     </nav>
                 </div>
                 <div class="inhoud">
+                    <h2>Update</h2>
                     <form method="post" action="Update.php?bijwerken=yes&product_id=<?php echo $product->GetProduct_id(); ?>">
                         <label for="productnaam">product*:</label>
                         <input type="text" name="productnaam" value="<?php echo $product->GetProduct(); ?>" placeholder="productnaam" required><br/>

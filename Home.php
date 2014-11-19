@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                          //
+//************** ADMIN HARDCODED BESTAND:/bussiness/GEBRUIKER SVC REGEL:103-> EMAIL ************************//
+//                                                                                                          //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 require_once ("business/gebruiker_service.php");
 require_once ("business/bestelling_service.php");
 require_once ("business/gemeente_service.php");
@@ -115,5 +121,21 @@ if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
     $gebruiker= $gebruikersvc->getByKlant_id($klant_id);
     $block= $gebruiker->GetBlock();
 }
+$lijstProducten=$productsvc->getProducten();
+$all=$bestellingsvc->getBestellingenMorgenTotalProducts($lijstProducten);
+$row=0;
+$col=0;
+/*foreach($all as $prod){
+    echo $prod[$row]
+            [$col],'&nbsp&nbsp';
+    $col=$col+1;
+    echo $prod[$row]
+            [$col],'&nbsp&nbsp';
+    $col=$col+1;
+    echo $prod[$row]
+            [$col],'<br/>';
+    $row=$row+1;
+    $col=0;
+}*/
 
 include ("/presentation/Home_presentation.php");

@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                         welcome : 
                         <?php
                         echo $gebruiker->GetVoornaam();
-                        echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                        echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                         if(isset($_SESSION["user_level"]) && $_SESSION["user_level"] != "admin"){
                             echo '<br/><br/>';?>
                             <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
@@ -46,9 +46,9 @@
                     }else{
                     ?>
                         <form method="post" action="Home.php?login=start">
-                            <label for="username">username:</label>
+                            <label for="username">username</label>
                             <input type="text" name="email" value="<?php if(isset($_COOKIE["username"])){ echo $_COOKIE["username"]; }?>" placeholder="email"><br/>
-                            <label for="password">password:</label>
+                            <label for="password">password</label>
                             <input type="password" name="wachtwoord" value="<?php if(isset($_COOKIE["wachtwoord"])){ echo $_COOKIE["wachtwoord"]; }?>"><br/>
                             <input type="submit" id="loginbutton" value="login" name="submit">
                         </form> 
@@ -59,9 +59,14 @@
                 </section>
             </header>
             <section class="body">
-                <?php
-                                    echo 'over ons';
-                ?>
+                <h2>Over ons</h2>
+                <br/>
+                <p>Bakkerij het Bakkertje te Werken.<br/>
+                Daar bakt onze Johan elke dag een heerlijk assortiment aan gebak,broden en andere.Wij streven voor het gemak van onze klanten. Waardoor we online bestellen mogelijk maken.<br/><br/>
+                
+                Neem ook vlug een lekker stukje taart.
+                </p>
+                <img alt="taart" src="Images/taart_page5678.jpg" title="taart" class="homeimg" width="320" height="240"/>
             </section>
             <footer class="footer">
                 <p class="footerinfo">Site gemaakt door Mathias Descan &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; PHP eindtest &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; fictieve bakker shop</p>

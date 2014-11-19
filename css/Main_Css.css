@@ -14,6 +14,7 @@ html,head,body,section,header,footer,div,ul,li{
     overflow: hidden;
     margin: auto;
     padding: 0.75em 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
     
     
     //border: solid 0.2em #555555;
@@ -39,7 +40,7 @@ html,head,body,section,header,footer,div,ul,li{
 
 .header{
     background-color: #c2100c;
-    margin: auto;
+    //margin: auto;
     overflow: hidden;
     
     height: 7.5em;
@@ -62,13 +63,22 @@ html,head,body,section,header,footer,div,ul,li{
     background-color: inherit;
     float: left;
     height: inherit;
-    width: 44.6em;
-    margin: 0.5em 0.5em 1.6em 0.5em
+    width: 42.6em;
+    margin: -0.5em 0.5em 0em 0.5em;
 }
 
 .title{ 
     height: 4.5em;
     background-color: inherit;
+}
+.titel{
+    position: absolute;
+    left: 180px;
+    top: -10px;
+    font-size: 42px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    
+    color: #FFFF6C;
 }
 
 .headmenu{
@@ -115,7 +125,7 @@ html,head,body,section,header,footer,div,ul,li{
     list-style: none;
     text-decoration: none;
     overflow: hidden;
-    padding: 0em 0em 0em 3em;
+    padding: 0em 0em 0em 2.5em;
 }
 .submenu li{
     display: inline-block;
@@ -145,6 +155,10 @@ html,head,body,section,header,footer,div,ul,li{
     color: #fff5b3;
 }
 
+.homeimg{
+    margin: 4em 16em 0em 16em;
+}
+
 .login{
     background-color: inherit; 
     float: left;
@@ -169,7 +183,7 @@ input{
 .body{
     background-color: #fff5b3;
     margin: auto;
-    padding: 2.3em 3.5em;    
+    padding: 1.0em 3.5em;    
     height: 600px;
     overflow: auto;
     
@@ -184,7 +198,12 @@ input{
 
 .inhoud{
     background-color: inherit;
-    padding: 1em 0em 0em 0em;
+    padding: 0em 0em 0em 0em;
+}
+
+.warning{
+    color: #cc0000;
+    font-size: 14px;
 }
 
 .productgroep_foto{
@@ -199,6 +218,9 @@ input{
     background-color: inherit;
     
 }
+.checkoutbutten{
+    margin: 0.5em 0em 1em 15em;
+}
 
 .free{
     background-color: inherit;
@@ -208,9 +230,19 @@ input{
 }
 .gebrfree{
     background-color: inherit;
+    margin: 0.3em 0em 0.3em 1.8em; 
 }
 .gebrblock{
     background-color: inherit;
+    margin: 0.3em 0em 0.3em 1.8em; 
+}
+.lijstpro{
+    margin: 0.4em 0em 0.4em 1em;    
+}
+.blockmessage{
+    color: red;
+    margin: auto;
+    padding: 0em 0em 0em 10.5em;//is absoluut
 }
 
 .footer{

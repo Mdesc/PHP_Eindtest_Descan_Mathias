@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                     welcome : 
                     <?php
                     echo $gebruiker->GetVoornaam();
-                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                    echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                     
                     }else{
                     ?>
@@ -85,6 +85,7 @@
                     }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="nieuwproduct"){?>
                     <!--Begin nieuwe product pagina-->
+                    <h2>Nieuw product</h2>
                         <form method="post" action="Beheren.php?addproduct=add">
                             <label for="productnaam">product*:</label>
                             <input type="text" name="productnaam" value="" placeholder="productnaam" required><br/>
@@ -107,6 +108,7 @@
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="nieuwproductgroep"){?>
                     <!--Begin nieuwe productgroep pagina-->
+                    <h2>Nieuw productgroep</h2>
                         <form method="post" action="Beheren.php?productgroep=add" enctype="multipart/form-data">
                             <label for="productgroep">productgroep*:</label>
                             <input type="text" name="productgroep" value="" placeholder="productgroep" required><br/>
@@ -118,6 +120,7 @@
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="productenbeheren"){?>
                     <!--Begin product beheren pagina-->
+                    <h2>Product beheer</h2>
                         <?php
                         foreach ($productgroepen as $productgroep){
                             if(isset($_GET["productgroepview"]) && $_GET["productgroepview"]== $productgroep->GetProductgroep_id()){
@@ -149,6 +152,7 @@
                     <?php }
                     if(isset($_GET["inhoud"]) && $_GET["inhoud"] =="klanten"){?>
                     <!--Begin klanten pagina-->
+                    <h2>Klant beheer</h2>
                     <u>geblokkeerde gebruikers</u><br/><br/>
                     <ul class="block">
                     <?php
@@ -181,11 +185,24 @@
                     <?php }
                     if(!isset($_GET["inhoud"])){?>
                     <!--Begin bestellingen pagina-->
+                    <h2>Bestelde producten</h2>
                         <?php
-                        foreach($bestellingen as $item){?>
-                        <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp';?>
-                        <?php echo 'aantal : ',$aantal=$item->GetAantal();?>  
-                        </li><?php
+                        foreach($productgroepen as $productgroep){
+                            $productgroepen_id=$productgroep->GetProductgroep_id();
+                            ?><u><?php echo $productgroep->GetProductgroep_naam();?></u><?php
+                            echo '<br/>';
+                            $row=0;
+                            foreach ($product_lijst as $prod){
+                                if($totaalMorgenBesteld[$row][1]==$productgroepen_id){
+                                    if($totaalMorgenBesteld[$row][2]>0){
+                                        ?><li class="lijstpro"><?php $product=$productsvc->getProductById($totaalMorgenBesteld[$row][0]); 
+                                            echo $product->GetProduct(),'&nbsp&nbsp';?>
+                                            <?php echo 'aantal : ',$totaalMorgenBesteld[$row][2];?>  
+                                            </li><?php
+                                    }
+                                }
+                                $row=$row+1;
+                            }
                         }
                         ?>
                     <!--Einde bestellingen pagina-->

@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -38,7 +38,7 @@
                     welcome : 
                     <?php
                     echo $gebruiker->GetVoornaam();
-                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                    echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                     
                     }else{
                     ?>
@@ -56,6 +56,7 @@
                 </section>
             </header>
             <section class="body">
+                <h2>Registreer</h2>
                 <?php if(isset($_GET["registreer"]) && $_GET["registreer"]=="complete"){
                     echo 'uw username:',$_COOKIE["email"],'<br/><br/>';
                     echo 'uw wachtwoord:',$_COOKIE["wachtwoordunhashed"],'<br/><br/>';

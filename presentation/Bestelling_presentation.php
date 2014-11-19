@@ -12,7 +12,7 @@
             <header class="header">
                 <section class="container_nav_title">
                     <section class="title">
-                        
+                        <p class="titel">Bakkertje<p>
                     </section>
                     <nav id="headmenu">
                         <ul class="menu">
@@ -36,7 +36,7 @@
                     if(isset($_SESSION["status"]) && $_SESSION["status"]==true){
                     ?>welcome : <?php
                     echo $gebruiker->GetVoornaam();
-                    echo "<a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
+                    echo "<br/><a href='home.php?logout=exit'><input type='button' value='logout'/></a>";
                     echo '<br/><br/>';?>
                     <a class='white' href='Bestelling.php?Winkelmand=yes'>Winkelmand (<?php echo $aantalitems; ?>)</a><br/><?php
                     }else{
@@ -59,11 +59,12 @@
                 if(isset($_GET['Winkelmand']) && $_GET['Winkelmand']=='yes'){
                     //inhoud van winkel mandje
                     ?>
-                        <p class="warning">Pas op u kunt slecht een bestelling per dag plaatsen</p>
+                    <h2>Winkelmand</h2>
+                        <p class="warning">Pas op u kunt slecht één bestelling per dag plaatsen</p>
                         <br/>
                     <?php
                     if($aantalitems==0){
-                        echo 'geen items in winkelmand';
+                        echo 'geen items in winkelmand<br/><br/>';
                     }
                     foreach($winkelmand as $item){?>
                         <li class="lijst"><?php $productmand=$productsvc->getProductById($item->GetProduct_id()); echo $productmand->GetProduct(),'&nbsp&nbsp &#8364';?>
@@ -79,7 +80,7 @@
                             <?php
                                   if($morgen==true && $overmorgen==true && $overovermorgen==true){
                             ?>
-                            <option value="onmogelijk">geen bestelling mogelijk</option>
+                            <option value="0">geen bestelling mogelijk</option>
                             <?php
                                   }
                                   if($morgen!=true){ 
@@ -96,13 +97,13 @@
                             <?php }
                             ?>
                         </select><br/>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        <input type="submit" id="checkout" value="checkout" name="submit">
+                        <input class="checkoutbutten" type="submit" id="checkout" value="checkout" name="submit">
                     </form>
                     <?php
                 }else{
                     if(isset($_GET['mijn']) && $_GET['mijn']=='view'){
                         ?>
+                        <h2>Geplaatste bestellingen</h2>
                         <a href='Bestelling.php?'>Terug naar producten lijst</a><br/>
                         <br/>
                         <u>Vandaag af te halen</u><br/>
@@ -204,6 +205,7 @@
                         }
                     }else{
                     ?>
+                    <h2>Bestelling</h2>
                     <a href='Bestelling.php?mijn=view'>Mijn geplaatste bestellingen bekijken</a><br/>
                     <br/>
                     <?php
