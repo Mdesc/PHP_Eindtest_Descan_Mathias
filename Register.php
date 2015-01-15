@@ -52,7 +52,7 @@ if(isset($_GET["registreer"]) && $_GET["registreer"]=="reg"){
     
     $gebruikersvc->userInputCheck($naam,$voornaam,$straat,$huisnr,$bus,$postcode,$gemeente,$email);
     $wachtwoordunhashed= $gebruikersvc->generateWachtwoord();
-    setcookie("wachtwoordunhashed",$wachtwoordunhashed,time()+60*20,"/");
+    setcookie("wachtwoordunhashed",$wachtwoordunhashed,time()+60*20,"/");//used to show pas on user screen online mogelijk via mail
     $wachtwoord= sha1($wachtwoordunhashed);
     $block= false;
     //chack postcode gemeente comb exists
@@ -71,6 +71,7 @@ if(isset($_GET["registreer"]) && $_GET["registreer"]=="reg"){
     try {
         $gebruikersvc->addGebruiker($naam,$voornaam,$straat,$huisnr,$bus,$postcode_id,$email,$wachtwoord,$block);
         header("location: Register.php?registreer=complete");
+        exit(0);
     } catch (emailInUseException $eiuex) {
         header("location: Register.php?registreer=emailerror");
     }

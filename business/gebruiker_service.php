@@ -51,14 +51,14 @@ class gebruiker_service{
         $gemeente= stripslashes($gemeente);
         $email= stripslashes($email);
         
-        $naam= mysql_real_escape_string($naam);
+        /*$naam= mysql_real_escape_string($naam);verouderd
         $voornaam= mysql_real_escape_string($voornaam); 
         $straat= mysql_real_escape_string($straat);
         $huisnr= mysql_real_escape_string($huisnr);
         $bus= mysql_real_escape_string($bus);
         $postcode= mysql_real_escape_string($postcode);
         $gemeente= mysql_real_escape_string($gemeente);
-        $email= mysql_real_escape_string($email);
+        $email= mysql_real_escape_string($email);*/
         
         //echo $naam,' ',$voornaam,' ',$straat,' ',$huisnr,' ',$bus,' ',$postcode,' ',$gemeente,' ',$email;
     }

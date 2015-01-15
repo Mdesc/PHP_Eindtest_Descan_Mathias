@@ -9,7 +9,7 @@ session_start();
 
 require_once ("business/gebruiker_service.php");
 require_once ("business/bestelling_service.php");
-require_once ("business/gemeente_service.php");
+//require_once ("business/gemeente_service.php");
 require_once ("business/product_service.php");
 require_once ("business/productgroep_service.php");
 
@@ -66,7 +66,7 @@ $bestellingsvc= new bestelling_service();
 
 //print_r($_SESSION['winkelmand']);
   
-$gemeentesvc= new gemeente_service();
+//$gemeentesvc= new gemeente_service();
 //$gemeentesvc->addGemeente(8610,"gemeente");                                               //add
 //$gemeentesvc->deleteGemeente(8);                                                          //delete
 //$gemeentesvc->updateGemeente(2, 8610, "kortemark");                                       //update

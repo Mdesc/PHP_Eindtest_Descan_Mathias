@@ -72,9 +72,7 @@ html,head,body,section,header,footer,div,ul,li{
     background-color: inherit;
 }
 .titel{
-    position: absolute;
-    left: 180px;
-    top: -10px;
+    margin: 0.4em 0em 0em 0.4em;
     font-size: 42px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     

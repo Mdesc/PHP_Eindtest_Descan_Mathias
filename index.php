@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<!--
+<!--<!DOCTYPE html>
+
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,12 +11,14 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        header("location: Home.php");
+        echo 'lets do this';
         // put your code here
         ?>
     </body>
 </html>
 
-<!--materials needed
+materials needed
 7       azerothian diamond          
 5       aquamarine
 4       alicite
@@ -561,29 +563,60 @@ Mounts
 drake of the north wind                azserot   kalimdor   uldrum   drakeprims
 bronze drake mount                     " "       "  "       tanaris  cavern of time 100%drop's 
 twilight drake black drake             northrend            dragon blight raid 10 man and 25 man
+
+
+
+
+
+feral druid armor's
+
+helm name's                         drop by                 link location                   name                        chance
+
+Helm of the Iron Vanquisher         Kromog                  http://www.wowhead.com/zone=6967    Blackrock Foundry       ??      http://www.wowhead.com/spell=178212
+Sorka's Nightshade Cowl             Admiral Gar'an                       ""                     Blackrock Foundry       ??      http://www.wowhead.com/item=113978&bonus=0
+                                    Enforcer Sorka                       ""                     Blackrock Foundry       ??
+                                    Marak the Blooded                    ""                     Blackrock Foundry       ??
+Toria's Perseverance                Highmaul Skullcrusher   http://www.wowhead.com/zone=6722    Spires of Arak          0.1     http://www.wowhead.com/item=118894
+                                    Warsong Raider                                              Nagrand                 0.04     
+                                    Bloodmaul Slaver                                            Bloodmaul Slag Mines    0.03    
+                                    Shadowbourne Felcaster                                      Talador                 0.03
+                                    Iron Deadshot                                               Gorgrond                0.01
+                                    Sabermaw Scarfang                                           Nagrand                 0.01
+Gaze of the Gronn Killer            Gruul                   http://www.wowhead.com/zone=6967    Blackrock Foundry       ??
+Rune-Enscribed Hood                 Ko'ragh                 http://www.wowhead.com/npc=87445    Highmaul                ??
+Grapeshot Hood                      Admiral Gar'an                                              Blackrock Foundry  
+                                    Enforcer Sorka                                              Blackrock Foundry 
+                                    Marak the Blooded                                           Blackrock Foundry 
+Cowl of Grim Shadows                item Invader's Forgotten Treasure      Gold Victory         doing invasions         6       http://www.wowhead.com/item=115405
+
+neck
+Firecrystal Chain                   Siegemaster Rokra                                                                   0.7                 
+Grandiose Choker                    lv 100 garrison mision                                                              100%    
+
+
+shoulders                           
+                                    Grom'kar Footsoldier                                                                0.16     http://www.wowhead.com/item=118890
+Scaling Hook Spaulders              item Invader's Forgotten Treasure      Gold Victory                                 
+
+
+thing i got to do in wow
+
+leveling chars
+getting exp gear
+walking true the quest line of twilight highlands 
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 -->
-
-
-
-
- 
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
